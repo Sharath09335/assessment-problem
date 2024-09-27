@@ -1,0 +1,21 @@
+def group_anagrams(strs):
+    anagram_map = {}
+    
+    for s in strs:
+        # Sort the string to form the key
+        sorted_str = ''.join(sorted(s))
+        
+        # Group anagrams in the dictionary
+        if sorted_str not in anagram_map:
+            anagram_map[sorted_str] = []
+        anagram_map[sorted_str].append(s)
+    
+    # Return the grouped anagrams as a list of lists
+    return list(anagram_map.values())
+
+# Example test cases
+example1 = ['ear', 'lea', 'tar', 'ate', 'nar', 'bal']
+example2 = []
+
+print(group_anagrams(example1))  # Output: [['ear', 'lea', 'ate'], ['tar'], ['nar'], ['bal']]
+print(group_anagrams(example2))   # Output: []
