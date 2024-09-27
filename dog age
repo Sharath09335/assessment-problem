@@ -1,0 +1,31 @@
+Program 5
+def next_greater_element(nums):
+    n = len(nums)
+    output = [-1] * n
+    stack = []
+
+    for i in range(2 * n):  # Loop twice for circular array effect
+        current_index = i % n  # Get the index in the original list
+        while stack and nums[current_index] > nums[stack[-1]]:
+            index = stack.pop()
+            output[index] = nums[current_index]
+        if i < n:  # Only push indices from the first pass
+            stack.append(current_index)
+
+    return output
+
+# Example Test Cases
+# Test Case 1
+input_nums = [4, 1, 2]
+output = next_greater_element(input_nums)
+print(output)  # Output: [-1, 2, -1]
+
+# Test Case 2
+input_nums = [1, 2, 1]
+output = next_greater_element(input_nums)
+print(output)  # Output: [2, -1, 2]
+
+# Test Case 3
+input_nums = [2, 4]
+output = next_greater_element(input_nums)
+print(output)  # Output: [4, -1]
