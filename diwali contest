@@ -1,0 +1,41 @@
+Program 4
+def is_palindrome(s, left, right):
+    while left < right:
+        if s[left] != s[right]:
+            return False
+        left += 1
+        right -= 1
+    return True
+
+def valid_palindrome(s):
+    left, right = 0, len(s) - 1
+    
+    while left < right:
+        if s[left] != s[right]:
+            # Check both possibilities: skipping left or skipping right
+            return is_palindrome(s, left + 1, right) or is_palindrome(s, left, right - 1)
+        left += 1
+        right -= 1
+    
+    return True  # It's already a palindrome
+
+# Example Test Cases
+# Test Case 1
+input_str = "abca"
+output = valid_palindrome(input_str)
+print(output)  # Output: True
+
+# Test Case 2
+input_str = "racecar"
+output = valid_palindrome(input_str)
+print(output)  # Output: True
+
+# Test Case 3
+input_str = "abc"
+output = valid_palindrome(input_str)
+print(output)  # Output: True
+
+# Test Case 4
+input_str = "a"
+output = valid_palindrome(input_str)
+print(output)  # Output: True
